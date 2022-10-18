@@ -1,11 +1,15 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
+const cors = require("cors");
 
 const mealRoutes = require("./routes/mealRoutes");
 const ingredientRoutes = require("./routes/ingredientRoutes");
 
 const port = process.env.PORT;
+const app = express();
+const corsOptions = {
+  origin: "http://localhost:3000",
+};
 
 const mongoose = require("mongoose");
 mongoose
@@ -17,6 +21,10 @@ mongoose
     console.log("ERROR");
     console.log(err);
   });
+
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/meals", mealRoutes);
 

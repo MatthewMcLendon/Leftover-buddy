@@ -2,7 +2,7 @@ const Meal = require("../models/mealModel");
 
 module.exports.listMeals = async (req, res) => {
   const meals = await Meal.find({});
-  res.send(`Get all meals ${meals}`);
+  res.send(meals);
 };
 
 module.exports.showMeal = async (req, res) => {
