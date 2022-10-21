@@ -1,32 +1,26 @@
 import "./MealList.module.css";
 import { useEffect, useState } from "react";
-import React from "react";
-const axios = require("axios").default;
+import MealDataService from "../../services/meal.service";
+import MealItem from "./MealItem";
 
-function MealItem() {
-  const [meals, getMeals] = useState([]);
+function MealList(props) {
+  const [meals, setMeals] = useState([]);
 
-  const getAllMeals = () => {
-    axios
-      .get(`http://localhost:5000/meals`)
-      .then((res) => {
-        getMeals(res.data);
-      })
-      .catch((err) => console.error(`Error: ${err}`));
-  };
-
-  useEffect(() => getAllMeals());
+  useEffect(() => {
+    MealDataService.getAllMeals().then((res) => {
+      setMeals(res.data);
+    });
+  }, [meals]);
 
   return (
     <div>
-      <h1>Connected!</h1>
       <ul>
         {meals.map((meal) => {
-          return <li key={meal._id}>{meal.title}</li>;
+          return <MealItem key={meal._id} meal={meal} />;
         })}
       </ul>
     </div>
   );
 }
 
-export default MealItem;
+export default MealList;

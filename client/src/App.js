@@ -1,11 +1,14 @@
-import "./App.css";
-import MealItem from "./components/meals/MealList";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import AllMealsPage from "./pages/AllMealsPage";
 
 function App() {
   return (
-    <div className="App">
-      <MealItem />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/meals" element={<AllMealsPage />} />
+      </Routes>
+    </Router>
   );
 }
 
