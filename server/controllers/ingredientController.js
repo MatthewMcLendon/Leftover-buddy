@@ -2,7 +2,7 @@ const Ingredient = require("../models/ingredientModel");
 
 module.exports.listIngredients = async (req, res) => {
   const ingredients = await Ingredient.find({});
-  res.send(`Get all ingredients ${ingredients}`);
+  res.send(ingredients);
 };
 
 module.exports.newIngredient = async (req, res) => {
