@@ -5,18 +5,25 @@ import AllIngredientsPage from "./pages/AllIngredientsPage";
 import HomePage from "./pages/HomePage";
 import Navbar from "./components/ui/Navbar";
 
+import { MealProvider } from "./components/meals/MealProvider";
+import { IngredientProvider } from "./components/ingredients/IngredientProvider";
+
 function App() {
   return (
-    <div>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/meals" element={<AllMealsPage />} />
-          <Route path="/ingredients" element={<AllIngredientsPage />} />
-        </Routes>
-      </Router>
-    </div>
+    <>
+      <MealProvider>
+        <IngredientProvider>
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/meals" element={<AllMealsPage />} />
+              <Route path="/ingredients" element={<AllIngredientsPage />} />
+            </Routes>
+          </Router>
+        </IngredientProvider>
+      </MealProvider>
+    </>
   );
 }
 

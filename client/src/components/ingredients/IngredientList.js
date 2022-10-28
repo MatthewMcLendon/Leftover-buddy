@@ -1,17 +1,10 @@
 import "./IngredientList.module.css";
-
-import { useEffect, useState } from "react";
-import IngredientDataService from "../../services/ingredient.service";
+import { useContext } from "react";
+import IngredientContext from "./IngredientProvider";
 import IngredientItem from "./IngredientItem";
 
-function MealList(props) {
-  const [ingredients, setIngredients] = useState([]);
-
-  useEffect(() => {
-    IngredientDataService.getAllIngredients().then((res) => {
-      setIngredients(res.data);
-    });
-  }, [ingredients]);
+function MealList() {
+  const { ingredients } = useContext(IngredientContext);
 
   return (
     <div>
